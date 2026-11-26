@@ -27,9 +27,17 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(int amount)
     {
-        // no revival from dead
         if (IsDead) return;
 
+        SetHealth(health + amount);
+    }
+
+    public void AddMaxHealth(int amount)
+    {
+        if (IsDead || amount <= 0) return;
+
+        maxHealth += amount;
+        if (healthBar != null) healthBar.maxValue = maxHealth;
         SetHealth(health + amount);
     }
 
